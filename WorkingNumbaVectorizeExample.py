@@ -15,12 +15,10 @@ def nb_function_fast(xx, yy, xy):
     sqrt_term = math.sqrt(max(c1, xx * xx - c2 * xx * yy + c3 * xy * xy + yy * yy))
     return c4 * (xx + yy - sqrt_term)
 
-
 @cp.fuse
 def cp_function(xx, yy, xy):
     sqrt_term = cp.sqrt(cp.maximum(0., xx * xx - 2. * xx * yy + 4. * xy * xy + yy * yy))
     return .5 * (xx + yy - sqrt_term)
-
 
 sz = 4096
 a1, a2, a3 = (cp.empty((sz, sz), dtype=np.float32) for _ in range(3))
